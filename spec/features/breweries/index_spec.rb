@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "breweries index page", type: :feature do
-  it "can see all the names of the breweries in the index" do
+
+  it "displays the brewery name in the index" do
     new_belgium = Brewery.create(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     odell = Brewery.create(name: 'Odell Brewing', age: 33, pet_friendly: true)
     funkwerks = Brewery.create(name: 'Funkwerks', age: 12, pet_friendly: true)
