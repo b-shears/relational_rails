@@ -1,0 +1,7 @@
+<h1>Beers</h1>
+  <% @beers.each do |beer| %>
+    <h3><%= beer.name %></h3>
+    <h3><%= beer.style %></h3>
+    <h3><%= beer.review_rating %></h3>
+    <h3><%= beer.in_stock %></h3>
+  <% end %>
