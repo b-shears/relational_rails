@@ -26,4 +26,15 @@ RSpec.describe 'beers show page' do
     visit "/beers/#{@beer_1.id}"
     expect(page).to have_content(@beer_1.in_stock)
   end
+
+  it 'links to the child index' do
+    visit "/beers"
+    expect(page).to have_link('Beers Index', href: '/beers')
+  end
+
+  it 'links to the parent index' do
+    visit "/beers"
+    expect(page).to have_link('Brewery Index', href: '/breweries')
+  end
+
 end

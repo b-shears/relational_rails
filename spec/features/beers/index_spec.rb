@@ -30,10 +30,15 @@ RSpec.describe "beers index page", type: :feature  do
     expect(page).to have_content(@beer_1.in_stock)
     expect(page).to have_content(@beer_2.in_stock)
   end
-
+  # user story 8
   it 'links to the child index' do
-    visit "/breweries"
+    visit "/beers"
+    expect(page).to have_link('Beers Index', href: '/beers')
+  end
+  # user story 9
+  it 'links to the parent index' do
+    visit "/beers"
     expect(page).to have_link('Brewery Index', href: '/breweries')
   end
 
-end 
+end
