@@ -13,13 +13,10 @@ RSpec.describe Brewery, type: :model do
 
   describe "::order_by_time_created" do
     it 'orders breweries correctly by most recently created' do
-      # Beer.destroy_all
-      # Brewery.destroy_all
       new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true, created_at: 15.seconds.ago)
       odell = Brewery.create!(name: 'Odell Brewing', age: 33, pet_friendly: true, created_at: 3.seconds.ago)
       funkwerks = Brewery.create!(name: 'Funkwerks', age: 12, pet_friendly: true, created_at: 10.seconds.ago)
       aleworks = Brewery.create!(name: 'Loveland Aleworks', age: 10, pet_friendly: false, created_at: 1.seconds.ago)
-      # binding.pry
       expect(Brewery.order_by_time_created).to eq([aleworks, odell, funkwerks, new_belgium])
     end
   end
