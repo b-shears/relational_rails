@@ -2,7 +2,8 @@
   <p><a href="/breweries">Brewery Index</a></p>
   <p><a href="/beers">Beers Index</a></p>
 
-    <% @breweries.each do |brewery| %>
+    <% @breweries.each_with_index do |brewery, index| %>
+    <div id="brewery-<%= index %>">
       <p><%= brewery.name %></p>
-
+    
     <% end %>
