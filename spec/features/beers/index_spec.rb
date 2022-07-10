@@ -30,4 +30,3 @@ RSpec.describe "beers index page", type: :feature  do
     expect(page).to have_content(@beer_1.in_stock)
     expect(page).to have_content(@beer_2.in_stock)
   end
-end
