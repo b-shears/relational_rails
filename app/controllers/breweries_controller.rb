@@ -1,6 +1,6 @@
 class BreweriesController < ApplicationController
   def index
-    @breweries = Brewery.all
+    @breweries = Brewery.all.order_by_time_created
   end
 
   def show
