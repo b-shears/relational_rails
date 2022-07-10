@@ -5,6 +5,7 @@ class BreweriesController < ApplicationController
 
   def show
     @brewery = Brewery.find(params[:id])
+    @brewery_beer_count = @brewery.count_of_beers
   end
 
 end
