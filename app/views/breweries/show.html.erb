@@ -4,4 +4,6 @@
 <p><a href="/breweries/<%="#{@brewery.id}"%>/beers">Beers at Brewery</a></p>
 <p> Age: <%= @brewery.age %></p>
 <p> Pet Friendly: <%= @brewery.pet_friendly %></p>
-<div id="breweries<p> Number of Beers: <%= @brewery_beer_count %></p>"
+<p> Number of Beers: <%= @brewery_beer_count %></p>
+
+<%= link_to 'Update Brewery', "/breweries/#{@brewery.id}/edit" %>
