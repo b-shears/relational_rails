@@ -1,0 +1,11 @@
+<%= link_to 'New Brewery', '/breweries/new' %>
+<h1>Create New Brewery</h1>
+<%= form_with url: "/breweries", method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :age %>
+  <%= form.text_field :age %>
+  <%= form.label :pet_friendly %>
+  <%= form.text_field :pet_friendly %>
+  <%= form.submit 'Create Brewery' %>
+<% end %>
