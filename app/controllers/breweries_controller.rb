@@ -9,7 +9,6 @@ class BreweriesController < ApplicationController
   end
 
   def new
-
   end
 
   def create
