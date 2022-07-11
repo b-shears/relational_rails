@@ -15,14 +15,18 @@ RSpec.describe 'New Brewery' do
     describe "When I visit the Brewery Index page then I see a link to create a new Brewery record, New Brewery" do
       it 'I can create a new Brewery when I click on the link' do
         visit '/breweries'
-        click_link 'New Brewery'
+        click_link "New Brewery"
         expect(current_path).to eq('/breweries/new')
-        fill_in 'Name', with: 'The New Brewery'
+        fill_in 'Name', with: "The New Brewery"
         fill_in 'Age', with: 0
         fill_in 'pet_friendly', with: true
+        # save_and_open_page
         click_on 'Create Brewery'
-        expect(current_path).to eq('/breweries')
-        expect(page).to have_content('The New Brewery')
+        expect(current_path).to eq("/breweries")
+        # new_brewery_id = Brewery.last.id
+        # expect(current_path).to eq("/breweries/#{new_brewery_id}")
+        expect(page).to have_content("The New Brewery")
+        expect(page).to have_content("The New Brewery")
       end
     end
   end
