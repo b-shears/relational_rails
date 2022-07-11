@@ -26,5 +26,4 @@ RSpec.describe 'New Brewery' do
       end
     end
   end
-
 end
