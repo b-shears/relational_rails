@@ -8,4 +8,17 @@ class BreweriesController < ApplicationController
     @brewery_beer_count = @brewery.count_of_beers
   end
 
+  def new
+
+  end
+
+  def create
+    Brewery.create(brewery_params)
+    redirect_to '/breweries'
+  end
+
+  private
+  def brewery_params
+    params.permit(:name, :age, :pet_friendly)
+  end
 end

@@ -1,6 +1,7 @@
   <h1>Breweries</h1>
   <p><a href="/breweries">Brewery Index</a></p>
   <p><a href="/beers">Beers Index</a></p>
+  <%= link_to 'New Brewery', '/breweries/new' %>
 
     <% @breweries.each_with_index do |brewery, index| %>
     <div id="brewery-<%= index %>">
