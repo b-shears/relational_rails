@@ -9,12 +9,21 @@ class BreweriesController < ApplicationController
   end
 
   def new
-
   end
 
   def create
     Brewery.create(brewery_params)
     redirect_to '/breweries'
+  end
+
+  def edit
+    @brewery = Brewery.find(params[:id])
+  end
+
+  def update
+    @brewery = Brewery.find(params[:id])
+    @brewery.update(brewery_params)
+    redirect_to "/breweries/#{@brewery.id}"
   end
 
   private
