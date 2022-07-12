@@ -6,4 +6,5 @@
 <p> Pet Friendly: <%= @brewery.pet_friendly %></p>
 <p> Number of Beers: <%= @brewery_beer_count %></p>
 
-<%= link_to 'Update Brewery', "/breweries/#{@brewery.id}/edit" %>
+<%= link_to 'Update Brewery', "/breweries/#{@brewery.id}/edit", method: :edit%>
+<%= link_to 'Delete Brewery', "/breweries/#{@brewery.id}", method: :delete %>
