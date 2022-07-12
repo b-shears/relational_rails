@@ -1,0 +1,12 @@
+<h1>Create New Beer for Brewery</h1>
+<%= form_with url: "/breweries/#{@brewery.id}/beers", method: :post, local: true do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.label :style %>
+    <%= form.text_field :style %>
+    <%= form.label :review_rating %>
+    <%= form.text_field :review_rating %>
+    <%= form.label :in_stock %>
+    <%= form.text_field :in_stock %>
+    <%= form.submit 'Create Beer' %>
+<% end %>
