@@ -1,1 +1,12 @@
 <h1>Update A Beer</h1>
+<%= form_with url: "/beers/#{@beer.id}", method: :patch, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :style %>
+  <%= form.text_field :style %>
+  <%= form.label :review_rating %>
+  <%= form.text_field :review_rating %>
+  <%= form.label :in_stock %>
+  <%= form.text_field :in_stock %>
+  <%= form.submit 'Update Beer' %>
+<% end %>

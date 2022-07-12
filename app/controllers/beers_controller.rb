@@ -7,4 +7,18 @@ class BeersController < ApplicationController
     @beer = Beer.find(params[:id])
   end
 
+  def edit
+    @beer = Beer.find(params[:id])
+  end
+
+  def update
+    @beer = Beer.find(params[:id])
+    @beer.update(beers_params)
+    redirect_to "/beers/#{@beer.id}"
+  end
+
+  private
+  def beers_params
+    params.permit(:name, :style, :review_rating, :in_stock)
+  end
 end

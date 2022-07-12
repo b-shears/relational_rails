@@ -36,5 +36,4 @@ RSpec.describe 'beers show page' do
     visit "/beers"
     expect(page).to have_link('Brewery Index', href: '/breweries')
   end
-
 end
