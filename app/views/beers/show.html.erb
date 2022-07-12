@@ -4,3 +4,5 @@
 <p> Style: <%= @beer.style %></p>
 <p> Review Rating: <%= @beer.review_rating %></p>
 <p> In Stock: <%= @beer.in_stock %></p>
+
+<%= link_to 'Update Beer', edit_beer_path(@beer) %>
