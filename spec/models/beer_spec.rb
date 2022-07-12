@@ -1,7 +1,27 @@
 require "rails_helper"
 
-describe Beer, type: :model do
-  describe "relationships" do
+RSpec.describe Beer, type: :model do
+  describe "validations" do
+    it { should validate_presence_of :name }
+    it { should allow_value(true).for(:in_stock) }
+    it { should allow_value(false).for(:in_stock) }
+    it { should validate_presence_of :style }
+    it { should validate_presence_of :review_rating }
+  end
+
+  describe 'relationships' do
     it { should belong_to(:brewery)}
+  end
+  # User Story 15, Child Index only shows `true` Records
+  # As a visitor
+  # When I visit the child index
+  # Then I only see records where the boolean column is `true`
+  it 'returns the beers that are in stock' do
+    new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
+    beer_1 = new_belgium.beers.create(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
+
+    expect(new_belgium.beers.show_beers_in_stock).to eq([beer_2])
+    expect(new_belgium.beers.show_beers_in_stock.count).to eq(1)
   end
 end
