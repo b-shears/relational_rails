@@ -1,4 +1,5 @@
 require 'rails_helper'
+#story_12
 # As a visitor
 # When I visit a parent show page
 # Then I see a link to update the parent "Update Parent"

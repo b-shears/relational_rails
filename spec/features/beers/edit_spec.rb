@@ -33,7 +33,6 @@ RSpec.describe 'Update Beer' do
     expect(page).to have_content('Pilsner')
     expect(page).to have_content(10)
     expect(page).to have_content(true)
-    save_and_open_page
   end
 
 end

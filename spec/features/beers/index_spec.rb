@@ -4,34 +4,43 @@ RSpec.describe "beers index page", type: :feature  do
   it 'displays the beer names in the index' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
     visit "/beers"
-    expect(page).to have_content(beer_1.name)
+    expect(page).to have_content(beer_2.name)
+    expect(page).to_not have_content(beer_1.name)
   end
 
   it 'displays the style of beer' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
     visit "/beers"
-    expect(page).to have_content(beer_1.style)
+    expect(page).to_not have_content(beer_1.style)
+    expect(page).to have_content(beer_2.style)
   end
 
   it 'displays the review rating of the beer' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
     visit "/beers"
-    expect(page).to have_content(beer_1.review_rating)
+    expect(page).to_not have_content(beer_1.review_rating)
+    expect(page).to have_content(beer_2.review_rating)
   end
 
   it 'displays if the beer is in stock' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
     visit "/beers"
-    expect(page).to have_content(beer_1.in_stock)
+    expect(page).to_not have_content(beer_1.review_rating)
+    expect(page).to have_content(beer_2.in_stock)
   end
   # user story 8
   it 'links to the child index' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
     visit "/beers"
     expect(page).to have_link('Beers Index', href: '/beers')
   end
@@ -39,6 +48,7 @@ RSpec.describe "beers index page", type: :feature  do
   it 'links to the parent index' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
     visit "/beers"
     expect(page).to have_link('Brewery Index', href: '/breweries')
   end
@@ -50,11 +60,20 @@ RSpec.describe "beers index page", type: :feature  do
 # Then I only see records where the boolean column is `true`
 
   it 'only shows beers that are in_stock when I visit the child index' do
+    new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
+    beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+    beer_2 = new_belgium.beers.create(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
     visit "/beers"
-    expect(page).to have_no_content(@beer_1.in_stock)
-    expect(page).to have_content(@beer_2.in_stock)
-  end 
-  
+    expect(page).to have_content(beer_2.name)
+    expect(page).to have_content(beer_2.style)
+    expect(page).to have_content(beer_2.review_rating)
+    expect(page).to have_content(beer_2.in_stock)
+    expect(page).to_not have_content(beer_1.name)
+    expect(page).to_not have_content(beer_1.style)
+    expect(page).to_not have_content(beer_1.review_rating)
+    expect(page).to_not have_content(beer_1.style)
+  end
+
 # User Story 18, Child Update From Childs Index Page
 # As a visitor
 # When I visit the `child_table_name` index page or a parent `child_table_name` index page
@@ -64,8 +83,9 @@ RSpec.describe "beers index page", type: :feature  do
   it 'links to edit a beers info from the beers index page' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
+
     visit "/beers"
-    # save_and_open_page
+    save_and_open_page
     click_link 'Edit Beer'
     expect(current_path).to eq("/beers/#{beer_1.id}/edit")
   end
