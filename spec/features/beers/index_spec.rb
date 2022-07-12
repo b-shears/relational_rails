@@ -41,4 +41,13 @@ RSpec.describe "beers index page", type: :feature  do
     expect(page).to have_link('Brewery Index', href: '/breweries')
   end
 
+# User Story 15, Child Index only shows `true` Records
+# As a visitor
+# When I visit the child index
+# Then I only see records where the boolean column is `true`
+  it 'only shows beers that are in_stock when I visit the child index' do
+    visit "/beers"
+    expect(page).to have_no_content(@beer_1.in_stock)
+    expect(page).to have_content(@beer_2.in_stock)
+  end
 end
