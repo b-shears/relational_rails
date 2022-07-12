@@ -49,4 +49,19 @@ RSpec.describe "breweries index page", type: :feature do
      visit "/breweries"
      expect(page).to have_link('Brewery Index', href: '/breweries')
    end
+
+   # User Story 17, Parent Update From Parent Index Page
+   # As a visitor
+   # When I visit the parent index page
+   # Next to every parent, I see a link to edit that parent's info
+   # When I click the link
+   # I should be taken to that parents edit page where I can update its information just like in User Story 4
+
+     it 'can update a brewery in the brewery index by clicking on a link' do
+       new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
+       visit "/breweries"
+       save_and_open_page
+       click_link "Edit Brewery"
+       expect(current_path).to eq("/breweries/#{new_belgium.id}/edit")
+     end
 end
