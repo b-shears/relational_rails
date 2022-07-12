@@ -10,5 +10,5 @@
     <% end %>
 
     <% @breweries.each do |brewery| %>
-      <p><%= brewery.name %></p>
+      <li><%= brewery.name %> | <a href="/breweries/<%="#{@brewery.id}"%>/edit">Edit Brewery</a></li>
     <% end %>
