@@ -6,9 +6,5 @@
 
     <% @breweries.each_with_index do |brewery, index| %>
     <div id="brewery-<%= index %>">
-      <p><%= brewery.name %></p>
-    <% end %>
-
-    <% @breweries.each do |brewery| %>
-      <p><%= brewery.name %></p>
+      <p><%= brewery.name %> | <a href="/breweries/<%="#{brewery.id}"%>/edit">Edit Brewery</a></p>
     <% end %>

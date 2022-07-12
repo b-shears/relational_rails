@@ -2,7 +2,7 @@
 <p><a href="/beers">Beers Index</a></p>
 <h1>Beers</h1>
   <% @beers.each do |beer| %>
-    <h3><%= beer.name %></h3>
+    <h3><%= beer.name %> | <a href="/beers/<%="#{beer.id}"%>/edit">Edit Beer</a></h3> 
     <h3><%= beer.style %></h3>
     <h3><%= beer.review_rating %></h3>
     <h3><%= beer.in_stock %></h3>
