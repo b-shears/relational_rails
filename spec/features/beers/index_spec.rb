@@ -80,7 +80,7 @@ RSpec.describe "beers index page", type: :feature  do
 # Next to every child, I see a link to edit that child's info
 # When I click the link
 # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
-  it 'links to edit a beers info from the beers index page' do
+  xit 'links to edit a beers info from the beers index page' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
 
@@ -88,5 +88,18 @@ RSpec.describe "beers index page", type: :feature  do
     save_and_open_page
     click_link 'Edit Beer'
     expect(current_path).to eq("/beers/#{beer_1.id}/edit")
+  end
+
+  # User Story 23, Child Delete From Childs Index Page
+  # As a visitor
+  # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+  # Next to every child, I see a link to delete that child
+  # When I click the link
+  # I should be taken to the `child_table_name` index page where I no longer see that child
+
+  it 'can delete beers from the beers index page' do
+    visit '/beers'
+    click_link "Delete Beer"
+    expect(current_path).to eq("/beers")
   end
 end

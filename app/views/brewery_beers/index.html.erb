@@ -1,8 +1,11 @@
 <h1>Brewery Beers Index Page</h1>
 <%= link_to 'Create Beer', "/breweries/#{@brewery.id}/beers/new" %>
+
 <% @beers.each do |beer| %> <a href="/beers/<%="#{beer.id}"%>/edit">Edit Beer</a></h3>
   <p><%= beer.name %></p>
   <p><%= beer.style %></p>
   <p><%= beer.review_rating %></p>
   <p><%= beer.in_stock %></p>
 <% end %>
+
+<%= link_to 'Sort Beers Alphabetically', "/breweries/#{@brewery.id}/beers?sort=alphabet" %>

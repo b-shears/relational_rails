@@ -8,4 +8,8 @@ class Beer < ApplicationRecord
   def self.show_beers_in_stock
     where(in_stock: true)
   end
+
+  def self.sort_beers_alphabetically
+    order(:name)
+  end
 end
