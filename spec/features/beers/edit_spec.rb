@@ -16,9 +16,9 @@ RSpec.describe 'Update Beer' do
     new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     beer_1 = new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: true)
     visit "/beers/#{beer_1.id}"
-    save_and_open_page
+
     click_link "Update Beer"
-    save_and_open_page
+  
     expect(current_path).to eq("/beers/#{beer_1.id}/edit")
 
     fill_in 'Name', with: 'New Beer'
