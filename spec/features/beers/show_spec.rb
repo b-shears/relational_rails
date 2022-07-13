@@ -35,18 +35,4 @@ RSpec.describe 'beers show page' do
     visit "/beers"
     expect(page).to have_link('Brewery Index', href: '/breweries')
   end
-
-  it 'can delete a beer with a link on the beers show page' do
-    visit "/beers/#{@beer_1.id}"
-    
-    click_link 'Delete Beer'
-
-    expect(current_path).to eq('/beers')
-
-    expect(page).to_not have_content(@beer_1.name)
-    expect(page).to_not have_content(@beer_1.style)
-    expect(page).to_not have_content(@beer_1.review_rating)
-    expect(page).to_not have_content(@beer_1.in_stock)
-    expect(page).to_not have_link('Delete Beer')
-  end
-end
+end 
