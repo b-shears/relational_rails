@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   patch '/breweries/:id', to: 'breweries#update'
   get '/beers', to: 'beers#index'
   get '/beers/:id', to: 'beers#show'
-  get '/beers/:id/edit', to: 'beers#edit', as:'edit_beer'
+  get '/beers/:id/edit', to: 'beers#edit'
   patch '/beers/:id', to: 'beers#update', as: 'update_beer'
   get '/breweries/:brewery_id/beers', to: 'brewery_beers#index'
   get '/breweries/:brewery_id/beers/new', to: 'brewery_beers#new'
