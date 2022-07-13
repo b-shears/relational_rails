@@ -13,26 +13,19 @@ require 'rails_helper'
 RSpec.describe 'Edit Brewery' do
   describe 'As a vistor' do
     describe 'When I vist the breweries show page' do
-      it 'can link to edit brewery' do
-        new_belgium = Brewery.create!(name: 'New Belgium Brewing', age: 31, pet_friendly: true)
-
-        visit "/breweries/#{new_belgium.id}"
-
-        click_link "Update Brewery"
-
-        expect(current_path).to eq("/breweries/#{new_belgium.id}/edit")
-      end
-
+    
       it 'can update a brewery' do
         new_belgium = Brewery.create!(name: 'New Belgium Brewing', age: 31, pet_friendly: true)
         visit "/breweries/#{new_belgium.id}/edit"
         fill_in 'Name', with: 'New Belgium Brewing Company'
         fill_in 'Age', with: 31
         fill_in 'pet_friendly', with: true
+
         click_on "Update Brewery"
 
         expect(current_path).to eq("/breweries/#{new_belgium.id}")
         expect(page).to have_content('New Belgium Brewing Company')
+        expect(page).to have_content(31)
       end
     end
   end

@@ -2,11 +2,11 @@
 <p><a href="/beers">Beers Index</a></p>
 
 <h1>Beers</h1>
-<% @beers.show_beers_in_stock.each do |beer| %>
-  <h3><%= beer.name %> | <a href="/beers/<%="#{beer.id}"%>/edit">Edit Beer</a> <a href="/breweries">Delete Beer</a></h3>
+<% @beers.show_beers_in_stock.each_with_index do |beer, index| %>
+  <div id="beer-<%= index %>">
+  <h3><%= beer.name %> | <a href="/beers/<%= "#{beer.id}" %>/edit">Edit Beer</a> | <a href="/beers">Delete Beer</a></h3>
   <h3><%= beer.style %></h3>
   <h3><%= beer.review_rating %></h3>
   <h3><%= beer.in_stock %></h3>
+  </div>
 <% end %>
-
-<h3><%= brewery.name %> | <a href="/breweries/<%="#{brewery.id}"%>/edit">Edit Brewery</a> | <a href="/breweries">Delete Brewery</a> </h3>
