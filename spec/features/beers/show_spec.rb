@@ -1,10 +1,9 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 RSpec.describe 'beers show page' do
   before :each do
     @new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
     @beer_1 = @new_belgium.beers.create!(name: 'La Folie', style: 'Oud Bruin', review_rating: 10, in_stock: false)
-    # @beer_2 = @new_belgium.beers.create!(name: 'Fat Tire', style: 'Amber', review_rating: 4, in_stock: true)
   end
 
   it 'can show the beers name with the corresponding id' do
@@ -35,5 +34,19 @@ RSpec.describe 'beers show page' do
   it 'links to the parent index' do
     visit "/beers"
     expect(page).to have_link('Brewery Index', href: '/breweries')
+  end
+
+  it 'can delete a beer with a link on the beers show page' do
+    visit "/beers/#{@beer_1.id}"
+    
+    click_link 'Delete Beer'
+
+    expect(current_path).to eq('/beers')
+
+    expect(page).to_not have_content(@beer_1.name)
+    expect(page).to_not have_content(@beer_1.style)
+    expect(page).to_not have_content(@beer_1.review_rating)
+    expect(page).to_not have_content(@beer_1.in_stock)
+    expect(page).to_not have_link('Delete Beer')
   end
 end

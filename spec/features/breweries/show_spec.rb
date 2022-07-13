@@ -1,16 +1,16 @@
 require 'rails_helper'
-# User Story 2, Parent Show
-#
-# As a visitor
-# When I visit '/parents/:id'
-# Then I see the parent with that id including the parent's attributes:
-# - data from each column that is on the parent table
+
 RSpec.describe "breweries show page", type: :feature do
-  it 'can show the brewery name with the assoicated id' do
-    new_belgium = Brewery.create(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
-    visit "/breweries/#{new_belgium.id}"
-    expect(page).to have_content(new_belgium.name)
-  end
+  # User Story 2, Parent Show
+  # As a visitor
+  # When I visit '/parents/:id'
+  # Then I see the parent with that id including the parent's attributes:
+  # - data from each column that is on the parent table
+    it 'can show the brewery name with the assoicated id' do
+      new_belgium = Brewery.create(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
+      visit "/breweries/#{new_belgium.id}"
+      expect(page).to have_content(new_belgium.name)
+    end
 
     it 'displays the breweries age' do
       new_belgium = Brewery.create(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
@@ -69,23 +69,25 @@ RSpec.describe "breweries show page", type: :feature do
       expect(page).to have_link('Beers at Brewery', href: "/breweries/#{new_belgium.id}/beers")
     end
 
-  #User Story 19, Parent Delete
-  # As a visitor
-  # When I visit a parent show page
-  # Then I see a link to delete the parent
-  # When I click the link "Delete Parent"
-  # Then a 'DELETE' request is sent to '/parents/:id',
-  # the parent is deleted, and all child records are deleted
-  # and I am redirected to the parent index page where I no longer see this parent
-  it 'can delete a brewery and all beer records assoicated with the brewery' do
-    new_belgium = Brewery.create(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
+    #User Story 19, Parent Delete
+    # As a visitor
+    # When I visit a parent show page
+    # Then I see a link to delete the parent
+    # When I click the link "Delete Parent"
+    # Then a 'DELETE' request is sent to '/parents/:id',
+    # the parent is deleted, and all child records are deleted
+    # and I am redirected to the parent index page where I no longer see this parent
+    it 'can delete a brewery and all beer records assoicated with the brewery' do
+      new_belgium = Brewery.create(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
+      visit "/breweries/#{new_belgium.id}"
 
-    visit "/breweries/#{new_belgium.id}"
-    click_link 'Delete Brewery'
-    expect(current_path).to eq("/breweries")
-    expect(page).to_not have_content(new_belgium.name)
-    expect(page).to_not have_content(new_belgium.age)
-    expect(page).to_not have_content(new_belgium.pet_friendly)
-    expect(page).to_not have_link('Delete Brewery')
-  end
+      click_link 'Delete Brewery'
+
+      expect(current_path).to eq("/breweries")
+      
+      expect(page).to_not have_content(new_belgium.name)
+      expect(page).to_not have_content(new_belgium.age)
+      expect(page).to_not have_content(new_belgium.pet_friendly)
+      expect(page).to_not have_link('Delete Brewery')
+    end
 end
