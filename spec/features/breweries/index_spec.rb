@@ -57,11 +57,26 @@ RSpec.describe "breweries index page", type: :feature do
    # When I click the link
    # I should be taken to that parents edit page where I can update its information just like in User Story 4
 
-     it 'can update a brewery in the brewery index by clicking on a link' do
+     xit 'can update a brewery in the brewery index by clicking on a link' do
        new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
        visit "/breweries"
-       save_and_open_page
+       # save_and_open_page
        click_link "Edit Brewery"
        expect(current_path).to eq("/breweries/#{new_belgium.id}/edit")
      end
+
+    # User Story 22, Parent Delete From Parent Index Page
+    # As a visitor
+    # When I visit the parent index page
+    # Next to every parent, I see a link to delete that parent
+    # When I click the link
+    # I am returned to the Parent Index Page where I no longer see that parent
+
+      it 'can delete a brewery from the brewery index page' do
+        new_belgium = Brewery.create!(name: 'New Beligum Brewing', age: 31, pet_friendly: true)
+        visit "/breweries"
+        save_and_open_page
+        click_link 'Delete Brewery'
+        expect(current_path).to eq("/breweries")
+      end
 end
